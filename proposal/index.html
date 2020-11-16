@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>COVID Communications - Project Proposal</title>
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        
+        <h1>COVID Communications Project Proposal</h1>
+        
+        <h3>Basic Info</h3>
+        <p>
+            Covid Communications<br />
+            Ben Tzudiker, 457993, bentzudiker@wustl.edu<br />
+            Claire McShane, 464850, cemcshane@wustl.edu<br />
+            <br />
+            https://github.com/cemcshane/covid-communication<br />
+        </p>
+        
+        <h3>Background and Motivation</h3>
+        <p>
+            We are interested in studying the use of language in public-facing spheres as it relates to COVID-19 communications. Whether it be from elected officials, journalists or other sources there is an intended audience which defines the posture of the writer or speaker. We want to study the sentiment analysis of these different perspectives to get a greater understanding of how the texture of language itself can define how information is disseminated and received. 
+        </p>
+        <p>
+            With COVID-19 as an active public health crisis in the United States, we thought there would be a bounty of data to study and learn from. Instead of opting for exclusively quantitative data, however, we discussed the non-traditional ways public health is enforced, like through speech. Acute to this class, the three of us all approached the third assignment with sentiment analysis or related goals and we wanted to continue on that path for this final project. We also felt the baseline of this approach would be flexibility enough so as to draw on any number of scopes. 
+        </p>
+        
+        <h3>Project Objectives</h3>
+        <p>
+            A tool that allows users to compare the language around COVID-19 by geographic scope, profession, date, and intended audience.
+        </p>
+        <h5>Sample framing questions:</h5>
+        <ul>
+            <li>How does the language of X politician compare from March 2020 to November 2020
+            <li>How does a layman’s language differ from an expert’s
+            <li>How does information compare when intended for a general audience versus a medical audience 
+            <li>How do local politicians discuss COVID against federally elected/serving government officials 
+            <li>Regionally, how is information shared to a general audience for news consumption? 
+            <li>How does language relate to COVID cases 
+        </ul>
+        
+        <h3>Data</h3>
+        <p>
+            As the project develops, we’ll decide whether or not we want to rely more on manually entered transcripts or on APIs. Since this is just meant to give an overview of each source’s discussions of COVID, it’s not necessary to include every piece of communication as long as the samples are representative (although more is of course nice).
+        </p>
+        <h5>Manual Entry:</h5>
+        <ul>
+            <li>Presidential addresses and other white house correspondence transcripts are available publicly online
+            <li>Same as above for news
+            <li>Some scientific journals about COVID are freely available online as pdfs
+            <li>Finding public correspondence from experts will probably be more challenging - one option is to manually scour other sources for interviews with doctors/scientists
+        </ul>
+        <h5>APIs/Comprehensive Data Sets:</h5>
+        <ul>
+            <li>Google has an <a href="https://newsapi.org/docs">API for searching news</a> to supplement manual entries
+            <li>This <a href="http://wordlist.aspell.net/">spellchecking data set</a> has word lists broken down by nationality (American, British, etc), word rarity (as a substitute for complexity), and various types of speech
+            <li>This <a href="https://www.kaggle.com/kkhandekar/word-difficulty">word complexity data set</a>
+            <li>Twitter API for someone’s (cough Trump’s) tweets
+        </ul>
+        
+        <h3>Data Processing</h3>
+        <p>
+            Accumulating and processing the data will probably be a large part of the project. We assume there won’t be APIs for everything we want, so we’re going to need to manually collect text samples from various sources. This will take some legwork, but we also have APIs and we’re just looking for a representative sample - it shouldn’t matter much if we don’t have an enormous wealth of data. Manually entered data will need manually entered metadata for our filtering. This metadata will include (when applicable/available) date published, location, who said it (probably broken up into categories like news anchor, politician, doctor, scientist), and so on. We’ll also need to write code to find this metadata in any data gathered live from an API. Depending on what analysis we decide to do, we might also want to remove articles and other junk words. Once we have the data, we need some way to quantify it. The spellchecking/word complexity data sets include several useful metrics, but we might also want to design COVID-specific ones (for example, how often does “vaccine,” “mask,” “school,” or a synonym of “hoax” appear?). Two of our group members did something similar to this for assignment 3, and the third has other experience with language processing. We also want to leverage other peoples’ work as much as possible, so we’ll probably also use a sentiment analysis library (or something similar) to get useful quantitative data from the text.
+        </p>
+        
+        <h3>Visualization Design</h3>
+        
+        
+        
+        <h3>Must-Have Features</h3>
+        <ul>
+            <li>The ability to compare at least two reference texts from different sources side by side
+            <li>At least three forms of analysis offered for the comparison (sentiment analysis, word frequency, etc.)
+            <li>Texts ranging from just before COVID-19 was declared a pandemic to present for accuracy 
+            <li>Data reflecting the voices of: elected officials, journalists, health professionals to have a range of intended audiences 
+        </ul>
+        
+        <h3>Optional Features</h3>
+        <ul>
+            <li>Integration of a news API to provide up-to-date analysis 
+            <li>Filter data first by keywords or other data tags to refine comparisons 
+            <li>Allow for users to compare multiple documents by multiple focuses/categories 
+            <li>Allow for users to extrapolate analysis from particular selection(s) of a text(s)
+        </ul>
+        
+        <h3>Project Schedule</h3>
+        <h5>November 15-21</h5>
+        <ul>
+            <li>Define small data set and perform analysis testing 
+            <li>Generate sample visualizations from dataset 
+            <li>Start data acquisition & tag texts 
+        </ul>
+        <h5>November 22-28</h5>
+        <ul>
+            <li>Finishing data acquisition & tag texts 
+            <li>Drafting designs and sketch layout of site 
+            <li>Make data visualization extensible for different texts 
+            <li>Integrate further sentiment analysis/on-call comparisons 
+        </ul>
+        <h5>November 29-December 5</h5>
+        <ul>
+            <li>Finish basic components of data analysis and visualization 
+            <li>Integrate all data streams into analysis tools and render visuals 
+        </ul>
+        <h5>December 6-12</h5>
+        <ul>
+            <li>Catch up week for blockers or final aspects of basic components 
+            <li>Refine UI and integrate data analysis/impact from visualizations 
+        </ul>
+        <h5>December 13-19</h5>
+        <ul>
+            <li>Refine website and polish basic components of project 
+            <li>Get feedback from professors and begin work on additional features 
+        </ul>
+        
+        
+    </body>
+</html>
