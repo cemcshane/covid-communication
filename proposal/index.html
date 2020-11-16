@@ -75,24 +75,101 @@
             lots of toggle options, or create several smaller visualizations. The design challenge of this project was 
             to find a middle ground where the user would not be overwhelmed by the large amounts of data.
         </p>
-        <h3>Initial designs:</h3>
+        <h3>Initial Designs:</h3>
         <img src="img/IMG_2139.jpeg" width="450" height="550"/>
         <img src="img/IMG_2140.jpeg" width="450" height="550"/>
         <img src="img/IMG_2142.jpeg" width="450" height="550"/>
         <p>
-            Each of the inital designs seemed to naturally build off of each other. Initially, we looked at how multiple 
-            independent visualizations would look on a page and how overwhelming it might appear. After experimenting with 
-            the first sketch, we realized that we could incorporate multiple visualizations more easily when they were connected 
-            in some way. The next sketch used a word map as a focal point and had the COVID case timeline act as a scroll bar 
-            for the main visualization. Finally, the last visualization adds more interactivity and connectivity to the visualization. 
-            This allows users to click on words and view a sentiment graph of the word over time. The complexity and conciseness 
-            bars in the 2nd sketch seemed like something that could instead be used as on-hover metadata to avoid cluttering/visual overload.
+            Each of the inital designs seemed to naturally build off of each other rather than being completely distinct. The design took on three stages:
+            <h4>Design 1:</h4>
+            <ul> 
+                <li>Observed how multiple independent visualizations would look on a page.</li>
+                <li>Visualizations:
+                    <ul>
+                        <li>Hoverable graph of COVID cases over time that could display the most commonly used words during different time periods.</li>
+                        <li>Generic scatter plot that would let the user pick two variables for the x- and y-axes. The plotted points would be media sources.</li>
+                        <li>A general "grab bag" of buzz words and concepts that are often used in COVID communication. A user would select a category 
+                            (e.g. left-leaning articles) and see which words/concepts communicators most often would choose from the "grab bag." This allows users 
+                            to see information that is typically left out in addition to what is used.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h4>Design 2:</h4>
+            <ul> 
+                <li>Started to experiment with connected visualizations and focused more on side-by-side comparisons.</li>
+                <li>Visualizations:
+                    <ul>
+                        <li>COVID case graph in this design serves more as a tool to adjust the main visualization, and does not do any text analysis in itself.</li>
+                        <li>Word map uses high-frequency words from a selected category (e.g. medical journals, local news articles) and connects them to words often used in their proximity 
+                            (whether that is in the same sentence or same article is TBD). Stronger connections would be displayed as either bolder or shorter lines and higher-frequency words as bolder nodes. 
+                            The user would then be able to drag the map across the line barrier to see a new selected category. The words NOT used by the new category would drop to the corner of the original box. 
+                            This would highlight differences between the two categories.
+                        </li>
+                        <li>Two generic bar charts undernear the focal point visualization provide additional information about the average conciseness and complexity of the language used in those categories. 
+                            Conciseness would be measured as a ratio of verbs:adjectives and complexity would require an outside dataset (mentioned in the Data section).
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h4>Design 3:</h4>
+            <ul> 
+                <li>Increased interactivity and interdependence of visualizations.</li>
+                <li>Visualizations:
+                    <ul>
+                        <li>Top COVID case graph still allows users to change visualization data, but also includes on-hover tooltips.</li>
+                        <li>Word map (see Design 2). The only difference here would be an additional feature to click on words to render the third visualization.</li>
+                        <li>Sentiment analysis graph of the use of a particular word (selected from the word map) over time.</li>
+                    </ul>
+                </li>
+            </ul>
         </p>
-        <h3>Realization design:</h3>
+        <h3>Realization Design:</h3>
         <img src="img/IMG_2143.jpeg" width="500" height="625"/>
+        <h4>Features:</h4>
+        <ul>
+            <li>COVID case graph still functions as way to manipulate word map as well as having some additional info on hover.</li>
+            <li>Category selection becomes more of a focal point within its own block of the page rather than within the word map boxes.</li>
+            <li>
+                Word map (same as Design 3). However, this map will include a grayed-out "ghost" of the previous map after it is dragged 
+                across the barrier.
+            </li>
+            <li>
+                Sentiment map based on selected word similar to Design 3, except it is compatible with two separate categories for comparison. 
+                Each category's graph can be toggled on/off for clarity as well.
+            </li>
+        </ul>
+        <h4>Design Justification:</h4>
         <p>
-            [I WILL ADD DESIGN JUSTIFICATION HERE (and clean up the captions for the sketches as well)]
+            Our design is meant to shed light on how COVID communication differs across various audiences, platforms, and communicators. During the current 
+            pandemic, trillions of sources reach the general public. This visualization should allow users to unpack the undertones and objectives of this surplus of information 
+            in order to detect biases and find what is most reliable and relevant.
         </p>
+        <ul>
+            <li>
+                We wanted to emphasize how communication shifted over time, as a result of spikes in cases or times of relative calm, to reveal different sources' underlying motivations. 
+                By placing our timeline at the very top of the page, this emphasizes to users that time plays a large part.
+            </li>
+            <li>
+                In Design 2, we decided to emphasize comparison between source categories, so the final design made the selection of categories to compare more of a focal point. This also makes it clearer 
+                to the user that both the word maps AND sentiment graph would be using those category selections.
+            </li>
+            <li>
+                For means of comparison, we wanted to depict which words certain sources did not include compared to others. However, the lines linking the words in the map also change from 
+                category to category. Knowing this, we decided to incorporate a "ghost map" in each visualization box so users could also compare how word connections differed between sources. 
+                The "fit block into X-shaped hole" children's toy inspired this approach. Whenever the map was dragged across the barrier, users could see what information was pruned/readjusted in 
+                order to resemble the ghost map of the other category.
+            </li>
+            <li>
+                In order to give users flexibility to either observe more general trends or dive into more specific information, we made the word map serve as a way of selecting values for the sentiment graph. 
+                This seemed less overwhelming to the user and made the visualization appear more cohesive than disjointed.
+            </li>
+            <li>
+                Continuing with the side-by-side comparison theme, we adjusted the sentiment map to display two categories at once and toggle the display. This provides more insight into how 
+                different source categories handled similar scenarios over time.
+            </li>
+        </ul>
+
         <h3>Must-Have Features</h3>
         <ul>
             <li>The ability to compare at least two reference texts from different sources side by side
