@@ -1,0 +1,146 @@
+{
+    "nodes": [
+      {
+        "id": 1,
+        "word": "vaccine",
+        "frequency": 76
+      },
+      {
+        "id": 2,
+        "word": "hoax",
+        "frequency": 20
+      },
+      {
+        "id": 3,
+        "word": "test",
+        "frequency": 98
+      },
+      {
+        "id": 4,
+        "word": "panic",
+        "frequency": 19
+      },
+      {
+        "id": 5,
+        "word": "pandemic",
+        "frequency": 193
+      },
+      {
+        "id": 6,
+        "word": "death",
+        "frequency": 44
+      },
+      {
+        "id": 7,
+        "word": "uncertain",
+        "frequency": 13
+      },
+      {
+        "id": 8,
+        "word": "immunity",
+        "frequency": 7
+      },
+      {
+        "id": 9,
+        "word": "China",
+        "frequency": 14
+      },
+      {
+        "id": 10,
+        "word": "hotspot",
+        "frequency": 9
+      },
+      {
+        "id": 11,
+        "word": "spread",
+        "frequency": 166
+      },
+      {
+        "id": 12,
+        "word": "mask",
+        "frequency": 62
+      },
+      {
+        "id": 13,
+        "word": "quarantine",
+        "frequency": 26
+      },
+      {
+        "id": 14,
+        "word": "fever",
+        "frequency": 200
+      },
+      {
+        "id": 15,
+        "word": "cough",
+        "frequency": 12
+      }
+    ],
+    "links": [
+      {
+        "source": 1,
+        "target": 5,
+        "frequency": 1
+      },
+      {
+        "source": 1,
+        "target": 6,
+        "frequency": 2
+      },
+      {
+        "source": 1,
+        "target": 8,
+        "frequency": 4
+      },
+      {
+        "source": 2,
+        "target": 11,
+        "frequency": 2
+      },
+      {
+        "source": 1,
+        "target": 14,
+        "frequency": 3
+      },
+      {
+        "source": 1,
+        "target": 4,
+        "frequency": 1
+      },
+      {
+        "source": 1,
+        "target": 5,
+        "frequency": 2
+      },
+      {
+        "source": 4,
+        "target": 6,
+        "frequency": 1
+      },
+      {
+        "source": 8,
+        "target": 6,
+        "frequency": 6
+      },
+      {
+        "source": 12,
+        "target": 9,
+        "frequency": 1
+      },
+      {
+        "source": 4,
+        "target": 8,
+        "frequency": 2
+      },
+      {
+        "source": 4,
+        "target": 5,
+        "frequency": 3
+      },
+      {
+        "source": 4,
+        "target": 7,
+        "frequency": 1
+      }
+    ]
+  }

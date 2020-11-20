@@ -1,0 +1,10 @@
+#map-box {
+    fill: none;
+    stroke: black;
+    stroke-width: 2px;
+}
+
+#divider {
+    stroke: black;
+    stroke-width: 2px;
+}
