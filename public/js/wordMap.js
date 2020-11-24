@@ -17,7 +17,7 @@ WordMap.prototype.init = function(){
     self.margin = {top: 20, right: 175, bottom: 30, left: 175};
 
     //Gets access to the div element created for this chart from HTML
-    let divWordMap = d3.select("#word-maps");
+    let divWordMap = d3.select("#word-bubbles");
     self.svgBounds = divWordMap.node().getBoundingClientRect();
     self.svgWidth = self.svgBounds.width - self.margin.left - self.margin.right;
     self.svgHeight = self.svgWidth/2;
@@ -110,8 +110,6 @@ WordMap.prototype.init = function(){
             });
             topWords1 = topWords1.slice(0, 15);
             topWords2 = topWords2.slice(0, 15);
-            console.log(topWords1);
-            console.log(topWords2);
 
             //Create scales
             const radiusScale = d3.scaleSqrt()
@@ -121,11 +119,17 @@ WordMap.prototype.init = function(){
                     return d.frequency;
                 }))])
                 .range([0, 70]);
+                
+            divWordMap.append("button")
+                .text("Filter")
+                .on("click", function() {
+                    self.update(topWords2, radiusScale);
+                });
 
             //Create left visualization
             let simulation = d3.forceSimulation(topWords1)
-            .force("charge", d3.forceManyBody()
-                .strength(-30))
+                .force("charge", d3.forceManyBody()
+                    .strength(-30))
                 .force("center", d3.forceCenter().x(self.svgWidth/4).y(self.svgHeight/2))
                 .force('collision', d3.forceCollide().radius(function(d) {
                     return radiusScale(d.frequency);
@@ -135,7 +139,7 @@ WordMap.prototype.init = function(){
                 .data(topWords1)
                 .enter()
                 .append("circle")
-                .attr("class", "left-node")
+                .attr("class", "node left-node")
                 .attr('r', function(d) {
                     return radiusScale(d.frequency);
                 });
@@ -144,7 +148,7 @@ WordMap.prototype.init = function(){
                 .data(topWords1)
                 .enter()
                 .append("text")
-                .attr("class", "left-text")
+                .attr("class", "text left-text")
                 .text(function(d) {
                     return d.word;
                 });
@@ -189,7 +193,87 @@ WordMap.prototype.init = function(){
  * Highlights the selected story
  * @param fillin
  */
-WordMap.prototype.update = function(){
+WordMap.prototype.update = function(newWordData, radiusScale){
     let self = this;
 
+    let newWords = [];
+    newWordData.forEach(function(d) {
+        newWords.push(d.word);
+    });
+
+    let simulation = d3.forceSimulation(newWordData)
+        .force("charge", d3.forceManyBody()
+            .strength(-30))
+            .force("center", d3.forceCenter().x(3*self.svgWidth/4).y(self.svgHeight/2))
+            .force('collision', d3.forceCollide().radius(function(d) {
+                return radiusScale(d.frequency);
+            }));
+
+    let oldNodes = self.svg.selectAll(".left-node");
+
+    let repeatWords = [];
+    oldNodes
+        .each(function(d) {
+            if(newWords.includes(d.word)) {
+                repeatWords.push(d.word);
+                d3.select(this).transition().duration(100).style("fill", "lightgray");
+            }
+        });
+
+    let newNodes = self.svg.selectAll(".new-node")
+        .data(newWordData)
+        .enter()
+        .append("circle")
+        .attr("class", "node new-node")
+        .attr('r', function(d) {
+            return radiusScale(d.frequency);
+        })
+        .style("fill", function(d) {
+            if(repeatWords.includes(d.word)){
+                return "darkcyan";
+            }
+            return "salmon";
+        });
+
+    var newText = self.svg.selectAll(".new-text")
+        .data(newWordData)
+        .enter()
+        .append("text")
+        .attr("class", "text new-text")
+        .text(function(d) {
+            return d.word;
+        });
+
+    simulation.on("tick", function() {
+        // Update node coordinates
+        newNodes
+            .attr("cx", function(d) { return d.x = Math.max(70+self.svgWidth/2, Math.min(self.svgWidth - 70, d.x)); })
+            .attr("cy", function(d) { return d.y = Math.max(70, Math.min(self.svgHeight - 70, d.y)); });
+
+        newText
+            .attr("x", function(d) { return d.x = Math.max(70+self.svgWidth/2, Math.min(self.svgWidth - 70, d.x)); })
+            .attr("y", function(d) { return d.y = Math.max(25, Math.min(self.svgHeight - 25, d.y+5)); });
+    });
+    // Implement draggable nodes
+    function dragstart(event, d) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+    }
+    
+    function drag(event, d) {
+        d.fx = event.x;
+        d.fy = event.y;
+    }
+    
+    function dragend(event, d) {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+    }
+    
+    newNodes.call(d3.drag()
+        .on("start", dragstart)
+        .on("drag", drag)
+        .on("end", dragend));
 }
