@@ -33,7 +33,6 @@
         ]
 
         let wordMap = new WordMap(files);
-
         
     }
 
