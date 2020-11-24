@@ -47,17 +47,21 @@ WordMap.prototype.init = function(){
 
     let promises1 = [];
     let promises2 = [];
-    
-    self.files[5].forEach(function(url) {
+
+    d3.select("#start-button").on("click", function() {
+    let month1 = document.getElementById("month1").value;
+    let month2 = document.getElementById("month2").value;
+
+    self.files[month1].forEach(function(url) {
         promises1.push(d3.csv("../../" + url))
     });
 
-    self.files[9].forEach(function(url) {
+    self.files[month2].forEach(function(url) {
         promises2.push(d3.csv("../../" + url))
     });
 
     //https://gist.github.com/sebleier/554280#file-nltk-s-list-of-english-stopwords
-    const stopWords = ["donald", "trump", "president", "q", "mr", "dr", "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"];
+    const stopWords = ["slaoui", "donald", "trump", "president", "q", "mr", "dr", "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"];
 
     Promise.all(promises1).then(function(month1Data) {
         Promise.all(promises2).then(function(month2Data) {
@@ -112,15 +116,14 @@ WordMap.prototype.init = function(){
             topWords2 = topWords2.slice(0, 15);
 
             //Create scales
-            const radiusScale = d3.scaleSqrt()
-                .domain([0, Math.max(d3.max(topWords1, function(d) {
+            let radiusScale = d3.scaleSqrt()
+                .domain([0, d3.max(topWords1, function(d) {
                     return d.frequency;
-                }), d3.max(topWords2, function(d) {
-                    return d.frequency;
-                }))])
+                })])
                 .range([0, 70]);
                 
             divWordMap.append("button")
+                .attr("id", "filter-button")
                 .text("Filter")
                 .on("click", function() {
                     self.update(topWords2, radiusScale);
@@ -185,6 +188,7 @@ WordMap.prototype.init = function(){
                 .on("start", dragstart)
                 .on("drag", drag)
                 .on("end", dragend));
+            });
         });
     });
 }
@@ -196,6 +200,9 @@ WordMap.prototype.init = function(){
 WordMap.prototype.update = function(newWordData, radiusScale){
     let self = this;
 
+    radiusScale.domain([0, d3.max(newWordData, function(d) {
+        return d.frequency;
+    })])
     let newWords = [];
     newWordData.forEach(function(d) {
         newWords.push(d.word);
