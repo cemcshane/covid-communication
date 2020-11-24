@@ -31,9 +31,15 @@
             </select>
             <button id="start-button">Analyze</button>
         </div>
+        
+        Word: <input type="text" id="word-choice" value="the" /> <input type="button" onclick="wrangleData()" value="Display" /> <br />
+        <input type="checkbox" id="show-covid" /> Show COVID case overlay
+        
+        <div id="svg-area"></div>
 
         <script src="js/d3.min.js"></script>
         <script src="js/wordMap.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/frequencyScatter.js"></script>
     </body>
 </html>
