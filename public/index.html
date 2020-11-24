@@ -6,6 +6,16 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <h1>COVID Communication from Press Briefings</h1>
+
+        <h2>Word Frequency Scatterplot</h2>
+        Word: <input type="text" id="word-choice" value="the" /> <input type="button" onclick="wrangleData()" value="Display" /> <br />
+        <input type="checkbox" id="show-covid" /> Show COVID case overlay
+        
+        <div id="svg-area"></div>
+        <br>
+        <h2>Compare word frequencies of different months:</h2>
+        <h3>Size=word frequency</h3>
         <div id="word-bubbles">
             <select name="Month" id="month1">
                 <option value=2>February</option>
@@ -30,12 +40,7 @@
                 <option value=11>November</option>
             </select>
             <button id="start-button">Analyze</button>
-        </div>
-        
-        Word: <input type="text" id="word-choice" value="the" /> <input type="button" onclick="wrangleData()" value="Display" /> <br />
-        <input type="checkbox" id="show-covid" /> Show COVID case overlay
-        
-        <div id="svg-area"></div>
+        </div>        
 
         <script src="js/d3.min.js"></script>
         <script src="js/wordMap.js"></script>

@@ -49,15 +49,16 @@ WordMap.prototype.init = function(){
     let promises2 = [];
 
     d3.select("#start-button").on("click", function() {
+
     let month1 = document.getElementById("month1").value;
     let month2 = document.getElementById("month2").value;
 
     self.files[month1].forEach(function(url) {
-        promises1.push(d3.csv("../../" + url))
+        promises1.push(d3.csv("../" + url))
     });
 
     self.files[month2].forEach(function(url) {
-        promises2.push(d3.csv("../../" + url))
+        promises2.push(d3.csv("../" + url))
     });
 
     //https://gist.github.com/sebleier/554280#file-nltk-s-list-of-english-stopwords
